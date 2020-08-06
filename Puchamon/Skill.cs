@@ -4,25 +4,29 @@ using System.Text;
 
 namespace Puchamon
 {
-  abstract class Skill
+    public enum Affinity
     {
-        private enum Affinity
-        {
-            fire, earth, wind, dark, water, light
-        }
-        private Affinity affinity;
+        fire, earth, wind, dark, water, light
+    }
+    public abstract class Skill
+    {
+        
+        private Affinity _affinity;
         private string name;
-        private byte power;
+        private byte cost;
+        // ojo. Los skills tienen costo, los puchamon poder 
 
-        public Affinity Affinity { get => affinity; set => affinity = value; }
+
+        public Affinity Affinity { get => _affinity; set => _affinity = value; }
         public string Name { get => name; set => name = value; }
-        public byte Power { get => power; set => power = value; }
+        public byte Cost { get => cost; set => cost = value; }
 
-        public Skill(Affinity affinity,string name, byte power)
+
+        public Skill(Affinity affinity,string name, byte cost)
         {
-            this.Affinity = affinity;
-            this.Name = name;
-            this.Power = power;
+            this._affinity = affinity;
+            this.name = name;
+            this.cost = cost;
         }
     }
 }

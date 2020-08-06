@@ -4,14 +4,14 @@ using System.Text;
 
 namespace Puchamon
 {
-    class attackSkill : Skill
+    class AttackSkill : Skill
     {
 
-        public attackSkill(Affinity affinity, string name, byte power) : base(affinity, name, power)
+        public AttackSkill(Affinity affinity, string name, byte cost) : base(affinity, name, cost)
         {
-            if(power > 0 && power < 11)
+            if(cost > 0 && cost < 11)
             {
-                this.power = power;
+                this.Cost = cost;
             }
         }
 
