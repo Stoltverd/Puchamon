@@ -6,11 +6,11 @@ namespace Puchamon
 {
     class SupportSkill : Skill
     {
-        public SupportSkill(Affinity affinity,string name, byte cost) : base(affinity, name, cost)
+        public SupportSkill(Affinity affinity,string name, byte power) : base(affinity, name, power)
         {
-            if (cost > 0 && cost < 11)
+            if (power > 0 && power < 11)
             {
-                this.Cost = cost;
+                this.Power = power;
             }
             else
             {

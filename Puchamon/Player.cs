@@ -22,10 +22,9 @@ namespace Puchamon
         public Role Role { get => _role; set => _role = value; }
 
         //Constructor
-        public Player(List<Critter> Critters, Role role)
+        public Player(Role role)
         {
             this._role = role;
-            this.critters = Critters;
         }
 
 

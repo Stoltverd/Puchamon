@@ -7,8 +7,11 @@ namespace Puchamon
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            
+            Player player = new Player(/*Aquí pondría un rol. SI TUVIERA UNO*/);
+
         }
+
+
+
     }
 }

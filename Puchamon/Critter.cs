@@ -30,5 +30,10 @@ namespace Puchamon
             this.MoveSet = moveSet;
             this._affinity = affinity;
         }
+
+        public void useSkill() 
+        { 
+
+        }
     }
 }

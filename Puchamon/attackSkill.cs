@@ -7,11 +7,11 @@ namespace Puchamon
     class AttackSkill : Skill
     {
 
-        public AttackSkill(Affinity affinity, string name, byte cost) : base(affinity, name, cost)
+        public AttackSkill(Affinity affinity, string name, byte power) : base(affinity, name, power)
         {
-            if(cost > 0 && cost < 11)
+            if(power > 0 && power < 11)
             {
-                this.Cost = cost;
+                this.Power = power;
             }
         }
 
