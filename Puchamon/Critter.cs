@@ -7,14 +7,15 @@ namespace Puchamon
     class Critter
     {
         //Atributos
-        string name;
-        byte baseAtk, baseDef, daseDef, hp;
+        private string name;
+        private byte baseAtk, baseDef, daseDef, hp;
         
-        enum Afinity
+       private enum Affinity
         {
             fire, earth, wind, dark, water, light
         }
-        List<Skill> moveSet = new List<Skill>();
+        Affinity affinity;
+        private List<Skill> moveSet = new List<Skill>();
         //Accesores
         public String Name { get => name; set => name = value; }
         public byte BaseAtk { get => baseAtk; set => baseAtk = value; }
@@ -23,7 +24,7 @@ namespace Puchamon
         public byte Hp { get => hp; set => hp = value; }
         public List<Skill> MoveSet { get => moveSet; set => moveSet = value; }
 
-        public Critter(string name, byte baseAtk, byte baseDef, byte daseDef, byte hp, List<Skill> moveSet)
+        public Critter(string name, byte baseAtk, byte baseDef, byte daseDef, byte hp, List<Skill> moveSet, Affinity affinity)
         {
             this.Name = name;
             this.BaseAtk = baseAtk;
@@ -31,6 +32,7 @@ namespace Puchamon
             this.DaseDef = daseDef;
             this.Hp = hp;
             this.MoveSet = moveSet;
+            this.affinity = affinity;
         }
     }
 }
