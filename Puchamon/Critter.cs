@@ -10,10 +10,6 @@ namespace Puchamon
         private string name;
         private byte baseAtk, baseDef, hp, baseSpeed;
 
-        public enum Affinity
-        {
-            fire, earth, wind, dark, water, light
-        }
         Affinity affinity;
         private List<Skill> moveSet = new List<Skill>();
         //Accesores
@@ -122,5 +118,5 @@ namespace Puchamon
                 throw new System.ArgumentException("Are you sure those affinities exist? Because I DON'T THINK SO YOU STUPID IDIOT :) ", "Affinity");
             }
         }
-
+    }
  }
