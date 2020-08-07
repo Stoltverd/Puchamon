@@ -4,13 +4,10 @@ using System.Text;
 
 namespace Puchamon
 {
-  abstract class Skill
+  public abstract class Skill
     {
-        public enum Affinity
-        {
-            fire, earth, wind, dark, water, light
-        }
-        private Affinity affinity;
+       
+        
         private string name;
         private byte power;
 
@@ -18,11 +15,11 @@ namespace Puchamon
         public string Name { get => name; set => name = value; }
         public byte Power { get => power; set => power = value; }
 
-        public Skill(Affinity affinity,string name, byte power)
-        {
-            this.affinity = affinity;
+        public Skill(string name, byte power)
+        {           
             this.name = name;
-            this.power = power;
+            this.power = power; 
         }
     }
 }
+

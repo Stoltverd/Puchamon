@@ -8,13 +8,21 @@ namespace Puchamon
     {
         public supportSkill(Affinity affinity,string name, byte power) : base(affinity, name, power)
         {
-            if (power <= 0)
-                Power = 1;
-            else if (power> 10)
-                Power = 10;
-            else
-                Power = power;
+            if (power < 0 || power > 0 || power == 0)
+                this.power = 0;        
+           
 
+        }
+        public void UseSkill(Critter objectiveName)
+        {
+            if (this.Name == "AtkUp" && objectiveName.NumAtkUp < 4)
+            {
+                objectiveName.SkillPower = 1.2f;
+            }
+            else
+            {
+                objectiveName.SkillPower = 1;
+            }
         }
     }
 }
