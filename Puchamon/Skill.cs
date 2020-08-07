@@ -17,8 +17,8 @@ namespace Puchamon
 
         public Skill(string name, byte power)
         {           
-            this.name = name;
-            this.power = power; 
+            this.Name= name;
+            this.Power = power; 
         }
     }
 }
