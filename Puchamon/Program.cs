@@ -11,9 +11,12 @@ namespace Puchamon
             
         }
 
-        List<Skill> Setskills(Critter c)
+        void Setskills(Critter c, int i)
         {
             c.moveSet = new List<Skill>();
+            if (i > 9 || i < 0)
+                i = 1;
+                
             //Fire options set
             attackSkill FireAtk = new attackSkill(Skill.Affinity.fire, "Fenix Punch", 5);
             attackSkill FireAtk1 = new attackSkill(Skill.Affinity.fire, "Fire Breath", 10);
@@ -100,7 +103,6 @@ namespace Puchamon
             }
 
 
-            return;
         }
 
     }
