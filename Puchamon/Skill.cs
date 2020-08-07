@@ -6,7 +6,7 @@ namespace Puchamon
 {
   abstract class Skill
     {
-        private enum Affinity
+        public enum Affinity
         {
             fire, earth, wind, dark, water, light
         }
@@ -20,9 +20,9 @@ namespace Puchamon
 
         public Skill(Affinity affinity,string name, byte power)
         {
-            this.Affinity = affinity;
-            this.Name = name;
-            this.Power = power;
+            this.affinity = affinity;
+            this.name = name;
+            this.power = power;
         }
     }
 }

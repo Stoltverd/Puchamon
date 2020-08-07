@@ -8,14 +8,13 @@ namespace Puchamon
     {
         public supportSkill(Affinity affinity,string name, byte power) : base(affinity, name, power)
         {
-            if (power > 0 && power < 11)
-            {
-                this.power = power;
-            }
+            if (power <= 0)
+                Power = 1;
+            else if (power> 10)
+                Power = 10;
             else
-            {
-                
-            }
+                Power = power;
+
         }
     }
 }
