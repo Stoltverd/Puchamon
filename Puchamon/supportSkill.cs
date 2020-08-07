@@ -21,9 +21,17 @@ namespace Puchamon
         }
         public void UseSkill(Critter objectiveName)
         {
-            if (this.Name == "AtkUp" && objectiveName.NumAtkUp < 4)
+            if (this.Name == "AtkUp" && objectiveName.NumAtkUp < 4) //considerar si es necesario el limite de atkup
             {
                 objectiveName.SkillPower = 1.2f; 
+            }
+            else
+            {
+                objectiveName.SkillPower = 1;
+            }
+            if (this.Name == "DefUp" && objectiveName.NumDefUp < 4)
+            {
+                objectiveName.SkillPower = -1.2f;
             }
             else
             {

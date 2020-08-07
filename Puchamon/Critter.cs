@@ -8,12 +8,13 @@ namespace Puchamon
     {
         //Atributos
         private string name;
-        private byte baseAtk, baseDef, baseSpeed, numAtkUp;
+        private byte baseAtk, baseDef, baseSpeed, numAtkUp, numDefUp;
         private float skillPower, hp;
         Affinity _affinity;
         private List<Skill> moveSet = new List<Skill>();
         //Accesores
         public byte NumAtkUp { get => numAtkUp; set => numAtkUp = value; }
+        public byte NumDefUp { get => numDefUp; set => numDefUp = value; }
         public float SkillPower { get => skillPower; set => skillPower = value; }
         public String Name { get => name; set => name = value; }
         public byte BaseAtk { get => baseAtk; set => baseAtk = value; }
