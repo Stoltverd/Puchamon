@@ -1,28 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Puchamon
 {
-    class supportSkill : Skill
+    public class SupportSkill : Skill
     {
-        public supportSkill(Affinity affinity,string name, byte power) : base(affinity, name, power)
+        public SupportSkill(string name, float power) : base(name, power)
         {
-            if (power < 0 || power > 0 || power == 0)
-                this.power = 0;        
-           
-
-        }
-        public void UseSkill(Critter objectiveName)
-        {
-            if (this.Name == "AtkUp" && objectiveName.NumAtkUp < 4)
+            if (power > 0 && power < 11)
             {
-                objectiveName.SkillPower = 1.2f;
+                this.Power = power;
             }
             else
             {
-                objectiveName.SkillPower = 1;
+                
             }
+            
         }
     }
 }

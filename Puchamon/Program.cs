@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Puchamon
 {
@@ -7,195 +8,104 @@ namespace Puchamon
     {
         static void Main(string[] args)
         {
-            Critter critter = new Critter();
-            
-        }
+            //Se crean jugador y oponente
+            Player player = new Player(Role.player);
+            Player opponent = new Player(Role.opponent);
 
-        void Setskills(Critter c, int i)
-        {
-            c.moveSet = new List<Skill>();
-            if (i > 9 || i < 0)
-                i = 1;
-                
-            //Fire options set
-            attackSkill FireAtk = new attackSkill(Skill.Affinity.fire, "Fenix Punch", 5);
-            attackSkill FireAtk1 = new attackSkill(Skill.Affinity.fire, "Fire Breath", 10);
-            attackSkill FireAtk2 = new attackSkill(Skill.Affinity.fire, "Fire ball", 7);
-           
-            //Water Options Set
-            attackSkill WaterAtk = new attackSkill(Skill.Affinity.water, "Squirt 7u7", 5);
-            attackSkill WaterAtk1 = new attackSkill(Skill.Affinity.water, "Water whip", 6);
-            attackSkill WaterAtk2 = new attackSkill(Skill.Affinity.water, "Super wave", 10);
-            supportSkill Watersupport= new supportSkill(Skill.Affinity.water, "Miracle water", 0);
-            //Dark Options Set
-            attackSkill DarkAtk = new attackSkill(Skill.Affinity.dark, "Fear", 4);
-            attackSkill DarkAtk1 = new attackSkill(Skill.Affinity.dark, "Toxic Shadow", 8);
-            attackSkill DarkAtk2 = new attackSkill(Skill.Affinity.dark, "Embrace of darkness", 9);
-            supportSkill Darksupport= new supportSkill(Skill.Affinity.dark, "Blue moon", 0);
-            //Earth options set    
-            attackSkill EarthAtk = new attackSkill(Skill.Affinity.earth, "Face rock punch", 4);
-            attackSkill EarthAtk1 = new attackSkill(Skill.Affinity.earth, "Earthquake", 10);
-            attackSkill EarthAtk2 = new attackSkill(Skill.Affinity.earth, "Face rock punch", 6);
-            supportSkill Earthsupport = new supportSkill(Skill.Affinity.earth, "Ground Spikes", 0);
-            //Wind options set 
-            attackSkill WindAtk = new attackSkill(Skill.Affinity.wind, "Angry shout", 4);
-            attackSkill WindAtk1 = new attackSkill(Skill.Affinity.wind, "Cyclon", 9);
-            attackSkill WindAtk2 = new attackSkill(Skill.Affinity.wind, "Wind shear", 8);
-            supportSkill Windsupport= new supportSkill(Skill.Affinity.wind, "Divine wind", 0);
-            //Light options set    
-            attackSkill LightAtk = new attackSkill(Skill.Affinity.wind, "Horus Eye", 4);
-            attackSkill LightAtk1 = new attackSkill(Skill.Affinity.wind, "Redemption", 10);
-            attackSkill LightAtk2 = new attackSkill(Skill.Affinity.wind, "Beacon", 6);
-            supportSkill Lightsupport = new supportSkill(Skill.Affinity.light, "Lamp light", 0);
+            //Se crean unos cuantos skills
+            //Support
+            SupportSkill atkUp = new SupportSkill("AtkUp", 0);
+            SupportSkill defUp = new SupportSkill("DefUp", 0);
+            SupportSkill spdUp = new SupportSkill("SpdUp", 0);
+            //Ataque
+            AttackSkill phoenixAtk = new AttackSkill(Affinity.fire, "Phoenix Punch", 5);
+            AttackSkill fireBreath = new AttackSkill(Affinity.fire, "Fire Breath", 10);
+            AttackSkill squirt = new AttackSkill(Affinity.water, "Squirt 7u7", 5);
+            AttackSkill fear = new AttackSkill(Affinity.dark, "Fear", 4);
+            AttackSkill rockPunch = new AttackSkill(Affinity.earth, "Face destroying rock-punch", 4);
+            AttackSkill cyclon = new AttackSkill(Affinity.wind, "Cyclon", 9);
 
 
-            switch (a)
+            //Se crean los movesets vacíos de los puchamón
+            List<Skill> movesetBiggus = new List<Skill>();
+            List<Skill> movesetFlacidus = new List<Skill>();
+
+            List<Skill> movesetGonadude = new List<Skill>();
+            List<Skill> movesetClitoron = new List<Skill>();
+
+            //Agregamos skills a movesets. Profe, quiero que sepa que esta implementación fea y rara es culpa suya por poner cosas confusas e ilogicas de gusto para enseñarnos a 
+            //trabajar. Solo digo... :D
+            //Skills de BiggusDickus
+            movesetBiggus.Add(defUp);
+            movesetBiggus.Add(squirt);
+            movesetBiggus.Add(fear);
+            movesetBiggus.Add(rockPunch);
+
+            //Skills de Flacidus
+            movesetFlacidus.Add(atkUp);
+            movesetFlacidus.Add(fireBreath);
+            movesetFlacidus.Add(squirt);
+            movesetFlacidus.Add(cyclon);
+
+            //Skills de Gonadude
+            movesetGonadude.Add(defUp);
+            movesetGonadude.Add(fear);
+            movesetGonadude.Add(fireBreath);
+            movesetGonadude.Add(rockPunch);
+
+            //Skills de Clitoron
+            movesetClitoron.Add(spdUp);
+            movesetClitoron.Add(squirt);
+            movesetClitoron.Add(fear);
+            movesetClitoron.Add(rockPunch);
+
+
+            /*Se crean 2 puchamones para cada player*/
+            Critter biggus = new Critter("Biggus Dickus", 80, 10, 2, 200, movesetBiggus, Affinity.fire);
+            Critter flacidus = new Critter("Flacidus", 10, 80, 1, 100, movesetFlacidus, Affinity.earth);
+            Critter gonaDude = new Critter("Gonadude", 50, 1, 20, 50, movesetGonadude, Affinity.dark);
+            Critter clitoron = new Critter("Clitoron", 30, 60, 35, 60, movesetClitoron, Affinity.light);
+
+            //Asignamos los puchamones a los jugadores
+            player.Critters.Add(biggus);
+            player.Critters.Add(gonaDude);
+
+            opponent.Critters.Add(flacidus);
+            opponent.Critters.Add(clitoron);
+
+            //Que empiece el bonche hp. Los puchamones sacan los totes:
+            //NOTA: Como el combate por turnos no se debía implementar y spdDown el diseñador no tiene idea de como debe funcionar (pues primero dice que baja la 
+            //spd y luego que la aumenta... Ps inician en el orden que uno quiera
+            Console.WriteLine("HP de Biggus Dickus: "+biggus.Hp);
+            Console.WriteLine("¡Biggus Dickus usa Squirt contra Flacidus!");
+            biggus.UseAtkSkill(flacidus, squirt);
+            Console.WriteLine("HP de Flacidus: "+flacidus.Hp);
+            Console.WriteLine("¡Flacidus usa AtkUp!");
+            flacidus.UseSupSkill(flacidus, atkUp);
+            Console.WriteLine("¡Biggus Dickus usa Face destroying rock-punch!");
+            biggus.UseAtkSkill(flacidus, rockPunch);
+            Console.WriteLine("HP de Flacidus: "+flacidus.Hp);
+
+            //Chequea la hp del criter peleando y lo pasa de colección apenas se chorrea
+            foreach (var critter in player.Critters)
             {
-                case Critter.Affinity.dark:
-                    c.moveSet.add(DarkAtk);
-                    break;
-                case Critter.Affinity.earth:
-                    c.moveSet.add(EarthAtk);
-                    break;
-                case Critter.Affinity.fire:
-                    c.moveSet.add(FireAtk);
-                    break;
-                case Critter.Affinity.light:
-                    c.moveSet.add(LightAtk);
-                    break;
-                case Critter.Affinity.water:
-                    c.moveSet.add(WaterAtk);
-                    break;
-                case Critter.Affinity.wind:
-                    c.moveSet.add(WindAtk);
-                    break;
+                if (critter.Hp <= 0)
+                {
+                    opponent.Critters.Add(critter);
+                    player.Critters.Remove(critter);
+                }
             }
-            switch (i)
+            foreach (var critter in opponent.Critters)
             {
-                case i == 1:
-                    c.MoveSet.add(FireAtk1);
-                    c.MoveSet.add(WaterAtk1);
-                    break;
-                case i == 2:
-                    c.MoveSet.add(FireAtk2);
-                    c.MoveSet.add(Watersupport);
-                    break;
-                case i == 3:
-                    c.MoveSet.add(DarkAtk1);
-                    c.MoveSet.add(EarthAtk2);
-                case i == 4:
-                    c.MoveSet.add(LightAtk1);
-                    c.MoveSet.add(Earthsupport);
-                case i == 5:
-                    c.MoveSet.add(WindAtk1);
-                    c.MoveSet.add(Lightsupport);
-                case i == 6:
-                    c.MoveSet.add(DarkAtk2);
-                    c.MoveSet.add(EarthAtk1);
-                case i == 7:
-                    c.MoveSet.add(WaterAtk2);
-                    c.MoveSet.add(Windsupport);
-                case i == 8:
-                    c.MoveSet.add(Darksupport);
-                    c.MoveSet.add(LightAtk2);
-
-
+                if (critter.Hp <= 0)
+                {
+                    player.Critters.Add(critter);
+                    opponent.Critters.Remove(critter);
+                }
             }
 
-
         }
 
-    }
-    void Setskills(Critter c, int i)
-    {
-        c.moveSet = new List<Skill>();
-        if (i > 9 || i < 0)
-            i = 1;
-
-        //Fire options set
-        attackSkill FireAtk = new attackSkill(Skill.Affinity.fire, "Fenix Punch", 5);
-        attackSkill FireAtk1 = new attackSkill(Skill.Affinity.fire, "Fire Breath", 10);
-        attackSkill FireAtk2 = new attackSkill(Skill.Affinity.fire, "Fire ball", 7);
-
-        //Water Options Set
-        attackSkill WaterAtk = new attackSkill(Skill.Affinity.water, "Squirt 7u7", 5);
-        attackSkill WaterAtk1 = new attackSkill(Skill.Affinity.water, "Water whip", 6);
-        attackSkill WaterAtk2 = new attackSkill(Skill.Affinity.water, "Super wave", 10);
-        supportSkill Watersupport = new supportSkill(Skill.Affinity.water, "Miracle water", 0);
-        //Dark Options Set
-        attackSkill DarkAtk = new attackSkill(Skill.Affinity.dark, "Fear", 4);
-        attackSkill DarkAtk1 = new attackSkill(Skill.Affinity.dark, "Toxic Shadow", 8);
-        attackSkill DarkAtk2 = new attackSkill(Skill.Affinity.dark, "Embrace of darkness", 9);
-        supportSkill Darksupport = new supportSkill(Skill.Affinity.dark, "Blue moon", 0);
-        //Earth options set    
-        attackSkill EarthAtk = new attackSkill(Skill.Affinity.earth, "Face rock punch", 4);
-        attackSkill EarthAtk1 = new attackSkill(Skill.Affinity.earth, "Earthquake", 10);
-        attackSkill EarthAtk2 = new attackSkill(Skill.Affinity.earth, "Face rock punch", 6);
-        supportSkill Earthsupport = new supportSkill(Skill.Affinity.earth, "Ground Spikes", 0);
-        //Wind options set 
-        attackSkill WindAtk = new attackSkill(Skill.Affinity.wind, "Angry shout", 4);
-        attackSkill WindAtk1 = new attackSkill(Skill.Affinity.wind, "Cyclon", 9);
-        attackSkill WindAtk2 = new attackSkill(Skill.Affinity.wind, "Wind shear", 8);
-        supportSkill Windsupport = new supportSkill(Skill.Affinity.wind, "Divine wind", 0);
-        //Light options set    
-        attackSkill LightAtk = new attackSkill(Skill.Affinity.wind, "Horus Eye", 4);
-        attackSkill LightAtk1 = new attackSkill(Skill.Affinity.wind, "Redemption", 10);
-        attackSkill LightAtk2 = new attackSkill(Skill.Affinity.wind, "Beacon", 6);
-        supportSkill Lightsupport = new supportSkill(Skill.Affinity.light, "Lamp light", 0);
-
-
-        switch (a)
-        {
-            case Critter.Affinity.dark:
-                c.moveSet.add(DarkAtk);
-                break;
-            case Critter.Affinity.earth:
-                c.moveSet.add(EarthAtk);
-                break;
-            case Critter.Affinity.fire:
-                c.moveSet.add(FireAtk);
-                break;
-            case Critter.Affinity.light:
-                c.moveSet.add(LightAtk);
-                break;
-            case Critter.Affinity.water:
-                c.moveSet.add(WaterAtk);
-                break;
-            case Critter.Affinity.wind:
-                c.moveSet.add(WindAtk);
-                break;
-        }
-        switch (i)
-        {
-            case i == 1:
-                c.MoveSet.add(FireAtk1);
-                c.MoveSet.add(WaterAtk1);
-                break;
-            case i == 2:
-                c.MoveSet.add(FireAtk2);
-                c.MoveSet.add(Watersupport);
-                break;
-            case i == 3:
-                c.MoveSet.add(DarkAtk1);
-                c.MoveSet.add(EarthAtk2);
-            case i == 4:
-                c.MoveSet.add(LightAtk1);
-                c.MoveSet.add(Earthsupport);
-            case i == 5:
-                c.MoveSet.add(WindAtk1);
-                c.MoveSet.add(Lightsupport);
-            case i == 6:
-                c.MoveSet.add(DarkAtk2);
-                c.MoveSet.add(EarthAtk1);
-            case i == 7:
-                c.MoveSet.add(WaterAtk2);
-                c.MoveSet.add(Windsupport);
-            case i == 8:
-                c.MoveSet.add(Darksupport);
-                c.MoveSet.add(LightAtk2);
-
-
-        }
 
 
     }
